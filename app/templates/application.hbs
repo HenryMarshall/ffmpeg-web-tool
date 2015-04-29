@@ -11,6 +11,12 @@
     <div class="video-container col-md-7">
       <h2>Video Container</h2>
       {{file-loader}}
+
+      {{#ivy-videojs class="vjs-default-skin" width=600 height=400 controls=true playbackRate="1"}}
+        {{ivy-videojs-source src="/assets/test_video.webm"}}
+      {{/ivy-videojs}}
+
+
     </div>
 
     <div class="options-container col-md-5">
