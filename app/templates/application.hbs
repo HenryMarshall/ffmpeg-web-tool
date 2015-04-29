@@ -6,7 +6,7 @@
   </div>
 </nav>
 
-<div class="container-fluid">
+<div class="main-content container-fluid">
   <div class="row">
     <div class="video-container col-md-7">
       <h2>Video Container</h2>
@@ -24,7 +24,7 @@
 
     <div class="output-container col-md-5">
       <div class="ffmpeg-command-container">
-        <code>
+        <code class="ffmpeg-command">
           ffmpeg -ss 00:01:23 -t 20 -i '/path/to/input.mp4' -threads 0 -cpu-used 0 -c:v libvpx -c:a libvorbis -ac 2 -qmin 14 -qmax 24 -bufsize 1000k -quality good -crf 17 -b:v 1M -vf "fade=type=out:start_time=19:duration=1" -y /path/to/output.webm
         </code>
       </div>
