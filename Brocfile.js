@@ -17,4 +17,11 @@ var app = new EmberApp();
 // please specify an object with the list of modules as keys
 // along with the exports of each module as its value.
 
+app.import('bower_components/bootstrap/dist/css/bootstrap.min.css');
+app.import('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.eot');
+app.import('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.svg');
+app.import('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf');
+app.import('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.woff');
+app.import('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2');
+
 module.exports = app.toTree();

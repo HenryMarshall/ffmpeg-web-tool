@@ -1,3 +1,37 @@
-<h2 id="title">Welcome to Ember.js</h2>
+<nav class="nabar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <span class="navbar-brand">Video Converter</span>
+    </div>
+  </div>
+</nav>
 
-{{outlet}}
+<div class="main-content container-fluid">
+  <div class="row">
+    <div class="video-container col-md-7">
+      <h2>Video Container</h2>
+    </div>
+
+    <div class="options-container col-md-5">
+      <h2>Options Container</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="selection-container col-md-7">
+      <h2>Selection Container</h2>
+    </div>
+
+    <div class="output-container col-md-5">
+      <div class="ffmpeg-command-container">
+        <code class="ffmpeg-command">
+          ffmpeg -ss 00:01:23 -t 20 -i '/path/to/input.mp4' -threads 0 -cpu-used 0 -c:v libvpx -c:a libvorbis -ac 2 -qmin 14 -qmax 24 -bufsize 1000k -quality good -crf 17 -b:v 1M -vf "fade=type=out:start_time=19:duration=1" -y /path/to/output.webm
+        </code>
+      </div>
+
+      <div class="ffmpeg-instructions">
+        <p>Run the above!</p>
+      </div>
+    </div>
+  </div>
+</div>
