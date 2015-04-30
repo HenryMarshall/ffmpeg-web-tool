@@ -14,7 +14,7 @@
   <button {{action "playPause"}}>{{if isPaused "Play" "Pause"}}</button>
 </div>
 
-{{#hb-videojs class="vjs-default-skin"
+{{#hb-videojs 
     isPaused=isPaused
     controls=controls
     currentTime=currentTime

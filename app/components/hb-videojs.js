@@ -2,11 +2,6 @@ import Ember from 'ember';
 import videojs from 'videojs';
 
 export default Ember.Component.extend({
-  tagName: 'video',
-
-  classNames: ['video-js'],
-  // classNames: ['video-container'],
-
   concatenatedProperties: ['playerPropertyBindings'],
 
   playerEvents: {
@@ -136,9 +131,7 @@ export default Ember.Component.extend({
 
   _initPlayer: Ember.on('didInsertElement', function() {
     var self = this;
-    // debugger;
-    var element = this.get('element');
-    // var element = 
+    var element = $('video')[0]
     var options = {};
 
     this.set('_readyPromise', new Ember.RSVP.Promise(function(resolve) {
