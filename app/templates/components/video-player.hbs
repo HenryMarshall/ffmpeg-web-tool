@@ -6,9 +6,11 @@
       currentTime=currentTime 
       duration=duration
   }}
+  <button {{action "playPause"}}>{{if isPaused "Play" "Pause"}}</button>
 </div>
 
 {{#ivy-videojs class="vjs-default-skin"
+    isPaused=isPaused
     controls=controls
     currentTime=currentTime
     duration=duration
@@ -21,6 +23,5 @@
 }}
 
   {{ivy-videojs-source src="/assets/test_video.webm"}}
-
 {{/ivy-videojs}}
 

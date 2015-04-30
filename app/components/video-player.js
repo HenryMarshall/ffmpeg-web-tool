@@ -10,10 +10,15 @@ export default Ember.Component.extend({
   muted: false,
   playbackRate: 1,
   volume: 0,
+  isPaused: true,
 
   actions: {
     debug: function() {
       debugger;
+    },
+
+    playPause: function() {
+      this.toggleProperty('isPaused');
     }
   }
 });
