@@ -45,19 +45,19 @@ export default Ember.Component.extend({
     this.set('isPaused', true);
   }),
 
-  // actions: {
-  //   play: function() {
-  //     console.log('hit external play');
-  //     var player = this.get('player');
-  //     player.play();
-  //   },
+  actions: {
+    play: function() {
+      console.log('hit external play');
+      var player = this.get('player');
+      player.play();
+    },
 
-  //   pause: function() {
-  //     console.log('hit external pause');
-  //     var player = this.get('player');
-  //     player.pause();
-  //   }
-  // },
+    pause: function() {
+      console.log('hit external pause');
+      var player = this.get('player');
+      player.pause();
+    }
+  },
 
 
   // vanilla ivy-videojs
