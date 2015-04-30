@@ -1,0 +1,26 @@
+<div>
+  <button {{action "debug"}}>Debug</button>
+  {{playback-rate playbackRate=playbackRate}}
+  {{range-endpoint 
+      startOrEnd="Start" 
+      currentTime=currentTime 
+      duration=duration
+  }}
+</div>
+
+{{#ivy-videojs class="vjs-default-skin"
+    controls=controls
+    currentTime=currentTime
+    duration=duration
+    height=height
+    loop=loop
+    muted=muted
+    playbackRate=playbackRate
+    width=width
+    volume=volume
+}}
+
+  {{ivy-videojs-source src="/assets/test_video.webm"}}
+
+{{/ivy-videojs}}
+
