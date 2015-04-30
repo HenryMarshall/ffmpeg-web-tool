@@ -9,7 +9,7 @@ export default Ember.Component.extend({
   loop: false,
   muted: false,
   playbackRate: 1,
-  // volume:
+  volume: 0,
 
   actions: {
     debug: function() {

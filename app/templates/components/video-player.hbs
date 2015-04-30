@@ -1,4 +1,7 @@
-<button class="mahButton" {{action "debug"}}>Debug</button>
+<div>
+  <button {{action "debug"}}>Debug</button>
+  {{playback-rate playbackRate=playbackRate}}
+</div>
 
 {{#ivy-videojs class="vjs-default-skin"
     controls=controls
