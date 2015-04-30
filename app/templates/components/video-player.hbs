@@ -1,7 +1,11 @@
 <div>
   <button {{action "debug"}}>Debug</button>
   {{playback-rate playbackRate=playbackRate}}
-  {{range-endpoint startOrEnd="Start" currentTime=currentTime}}
+  {{range-endpoint 
+      startOrEnd="Start" 
+      currentTime=currentTime 
+      duration=duration
+  }}
 </div>
 
 {{#ivy-videojs class="vjs-default-skin"
