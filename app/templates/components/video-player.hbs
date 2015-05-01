@@ -1,17 +1,5 @@
 <div>
   <button {{action "debug"}}>Debug</button>
-  {{playback-rate playbackRate=playbackRate}}
-  {{range-endpoint 
-      startOrEnd="Start" 
-      currentTime=currentTime 
-      duration=duration
-  }}
-  {{range-endpoint
-      startOrEnd="End"
-      currentTime=currentTime
-      duration=duration
-  }}
-  <button {{action "playPause"}}>{{if isPaused "Play" "Pause"}}</button>
 </div>
 
 {{#hb-videojs 

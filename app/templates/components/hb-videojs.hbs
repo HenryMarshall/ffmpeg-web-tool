@@ -2,6 +2,20 @@
  {{yield}}
 </video>
 
-<p>stuff</p>
-<button {{action "play"}}>Play</button>
-<button {{action "pause"}}>Pause</button>
+{{#if isPaused}}
+  <button {{action "play"}}>Play</button>
+{{else}}
+  <button {{action "pause"}}>Pause</button>
+{{/if}}
+
+{{playback-rate playbackRate=playbackRate}}
+{{range-endpoint 
+    startOrEnd="Start" 
+    currentTime=currentTime 
+    duration=duration
+}}
+{{range-endpoint
+    startOrEnd="End"
+    currentTime=currentTime
+    duration=duration
+}}

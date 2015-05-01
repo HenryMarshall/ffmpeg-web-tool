@@ -47,13 +47,11 @@ export default Ember.Component.extend({
 
   actions: {
     play: function() {
-      console.log('hit external play');
       var player = this.get('player');
       player.play();
     },
 
     pause: function() {
-      console.log('hit external pause');
       var player = this.get('player');
       player.pause();
     }
@@ -131,7 +129,7 @@ export default Ember.Component.extend({
 
   _initPlayer: Ember.on('didInsertElement', function() {
     var self = this;
-    var element = $('video')[0]
+    var element = $('video')[0];
     var options = {};
 
     this.set('_readyPromise', new Ember.RSVP.Promise(function(resolve) {
