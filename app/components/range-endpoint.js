@@ -1,30 +1,26 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+
   actions: {
     incrementEndpoint: function(incrementBy) {
-      var newEndpoint = this.get('endpointTime') + incrementBy;
-
-      // All legal currentTime must be bounded by 0 and the duration.
-      newEndpoint = newEndpoint < 0 ? 0 : newEndpoint;
-      var duration = this.get('duration');
-      newEndpoint = newEndpoint > duration ? duration : newEndpoint;
-
-      this.set('endpointTime', newEndpoint);
+      var newEndpoint = this.get('endpoint') + incrementBy;
+      // FIXME: This uses a hacky sendAction pass through in hb-videojs
+      this.sendAction('setEndpoint', this.get('startOrEnd'), newEndpoint);
     }, 
 
     setEndpointToCurrentTime: function() {
       var currentTime = this.get('currentTime');
-      this.set('endpointTime', currentTime);
+      this.set('endpoint', currentTime);
     },
 
     setCurrentTimeToEndpoint: function() {
-      var endpointTime = this.get('endpointTime');
-      this.sendAction('action', endpointTime);
+      var endpoint = this.get('endpoint');
+      this.sendAction('setCurrentTime', endpoint);
     },
 
     setEndpointToDefault: function() {
-      this.set('endpointTime', Ember.computed.oneWay('defaultEndpointTime'));
-    }.observes('defaultEndpointTime').on('init')
+      this.set('endpoint', Ember.computed.oneWay('defaultEndpoint'));
+    }.observes('defaultEndpoint').on('init')
   }
 });

@@ -54,6 +54,12 @@ export default Ember.Component.extend({
     setCurrentTime: function(newCurrentTime) {
       var player = this.get('player');
       player.currentTime(newCurrentTime);
+    },
+
+    // This just passed the `setEndpoint` action up to hb-videojs's parent
+    // FIXME: there *must* be a better way
+    setEndpoint: function(startOrEnd, newEndpoint) {
+      this.sendAction('setEndpoint', startOrEnd, newEndpoint);
     }
   },
 

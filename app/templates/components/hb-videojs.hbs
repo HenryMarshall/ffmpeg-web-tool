@@ -12,16 +12,22 @@
 
 {{range-endpoint 
     startOrEnd="Start" 
+    endpoint=startEndpoint
+
     currentTime=currentTime 
-    action="setCurrentTime"
-    defaultEndpointTime=0
-    endpointTime=startEndpointTime
+    defaultEndpoint=0
+
+    setCurrentTime="setCurrentTime"
+    setEndpoint="setEndpoint"
 }}
 
 {{range-endpoint
     startOrEnd="End"
+    endpoint=endEndpoint
+
     currentTime=currentTime
-    action="setCurrentTime"
-    defaultEndpointTime=duration
-    endpointTime=endEndpointTime
+    defaultEndpoint=duration
+
+    setCurrentTime="setCurrentTime"
+    setEndpoint="setEndpoint"
 }}
