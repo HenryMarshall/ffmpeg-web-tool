@@ -59,8 +59,44 @@ export default Ember.Component.extend({
     setEndpoint: function(affectedEndpoint, newEndpoint) {
       this.sendAction('setEndpoint', affectedEndpoint, newEndpoint);
       this.maintainPlayerEndpointLockstep(affectedEndpoint, newEndpoint);
+    },
+
+    playSegment: function(loopSegment) {
+      this.set('isPlayingSegment', true);
+      this.set('isSegmentLooping', loopSegment);
+
+      this.send('setCurrentTime', this.get('startEndpoint'));
+      this.send('play');
     }
   },
+
+  stopSegment: function() {
+    this.set('isPlayingSegment', false);
+    this.set('isSegmentLooping', false);
+  },
+
+  watchForEndOfSegment: function() {
+    if (this.get('isPlayingSegment')) {
+      
+      var currentTime = this.get('currentTime');
+
+      // If before the segment, stop playing segment (sanity check)
+      if (currentTime < this.get('startEndpoint') || currentTime < 0) {
+        this.stopSegment();
+      } 
+      else {
+        if (currentTime >= this.get('endEndpoint')) {
+          if (this.get('isSegmentLooping')) {
+            this.send('setCurrentTime', this.get('startEndpoint'));
+          }
+          else {
+            this.stopSegment();
+            this.send('pause');
+          }
+        }
+      }
+    }
+  }.observes('currentTime').on('init'),
 
   // If the paused player is looking at the endpoint when it is changed, update
   // the currentTime to keep it in lockstep. This is helpful when fine-tuning
@@ -73,7 +109,6 @@ export default Ember.Component.extend({
       this.send('setCurrentTime', newEndpoint);
     }
   },
-
 
   // vanilla ivy-videojs
 
