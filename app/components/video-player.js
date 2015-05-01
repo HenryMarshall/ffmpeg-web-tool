@@ -15,11 +15,8 @@ export default Ember.Component.extend({
   endEndpoint: 0,
 
   actions: {
-    setEndpoint: function(startOrEnd, newEndpoint) {
+    setEndpoint: function(affectedEndpoint, newEndpoint) {
       var legalEndpoint = this.ensureEndpointIsLegal(newEndpoint);
-      var affectedEndpoint = startOrEnd === "Start" ? 
-                                "startEndpoint" : 
-                                "endEndpoint"
       this.set(affectedEndpoint, legalEndpoint);
     }
   },

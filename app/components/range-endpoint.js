@@ -3,7 +3,10 @@ import Ember from 'ember';
 export default Ember.Component.extend({
 
   sendEndpoint: function(newEndpoint) {
-    this.sendAction('setEndpoint', this.get('startOrEnd'), newEndpoint);
+    var affectedEndpoint = (this.get('startOrEnd') === "Start") ? 
+                            "startEndpoint" : 
+                            "endEndpoint";
+    this.sendAction('setEndpoint', affectedEndpoint, newEndpoint);
   },
 
   actions: {
@@ -18,7 +21,7 @@ export default Ember.Component.extend({
     },
 
     setEndpointToDefault: function() {
-      this.sendEndpoint(this.get('defaultEndpoint'))
+      this.sendEndpoint(this.get('defaultEndpoint'));
     }.observes('defaultEndpoint').on('init'),
 
     setCurrentTimeToEndpoint: function() {
