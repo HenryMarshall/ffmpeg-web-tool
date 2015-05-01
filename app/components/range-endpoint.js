@@ -22,8 +22,7 @@ export default Ember.Component.extend({
 
     setCurrentTimeToEndpoint: function() {
       var endpointTime = this.get('endpointTime');
-      debugger;
-      this.set('currentTime', endpointTime);
+      this.sendAction('action', endpointTime);
     }
   }
 });

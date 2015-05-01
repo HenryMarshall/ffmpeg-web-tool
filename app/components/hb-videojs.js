@@ -54,6 +54,12 @@ export default Ember.Component.extend({
     pause: function() {
       var player = this.get('player');
       player.pause();
+    },
+
+    setCurrentTime: function(newCurrentTime) {
+      var player = this.get('player');
+      console.log("newCurrentTime: ",newCurrentTime);
+      player.currentTime(newCurrentTime);
     }
   },
 

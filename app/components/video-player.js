@@ -13,10 +13,6 @@ export default Ember.Component.extend({
   isPaused: true,
 
   actions: {
-    debug: function() {
-      debugger;
-    },
-
     playPause: function() {
       this.toggleProperty('isPaused');
     }
