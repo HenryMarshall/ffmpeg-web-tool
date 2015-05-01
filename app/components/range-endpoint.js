@@ -1,30 +1,31 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+
+  sendEndpoint: function(newEndpoint) {
+    var affectedEndpoint = (this.get('startOrEnd') === "Start") ? 
+                            "startEndpoint" : 
+                            "endEndpoint";
+    this.sendAction('setEndpoint', affectedEndpoint, newEndpoint);
+  },
+
   actions: {
     incrementEndpoint: function(incrementBy) {
-      var newEndpoint = this.get('endpointTime') + incrementBy;
-
-      // All legal currentTime must be bounded by 0 and the duration.
-      newEndpoint = newEndpoint < 0 ? 0 : newEndpoint;
-      var duration = this.get('duration');
-      newEndpoint = newEndpoint > duration ? duration : newEndpoint;
-
-      this.set('endpointTime', newEndpoint);
+      var incrementedEndpoint = this.get('endpoint') + incrementBy;
+      this.sendEndpoint(this.get('endpoint') + incrementBy);
     }, 
 
     setEndpointToCurrentTime: function() {
-      var currentTime = this.get('currentTime');
-      this.set('endpointTime', currentTime);
-    },
-
-    setCurrentTimeToEndpoint: function() {
-      var endpointTime = this.get('endpointTime');
-      this.sendAction('action', endpointTime);
+      this.sendEndpoint(this.get('currentTime'));
     },
 
     setEndpointToDefault: function() {
-      this.set('endpointTime', Ember.computed.oneWay('defaultEndpointTime'));
-    }.observes('defaultEndpointTime').on('init')
+      this.sendEndpoint(this.get('defaultEndpoint'));
+    }.observes('defaultEndpoint').on('init'),
+
+    setCurrentTimeToEndpoint: function() {
+      var endpoint = this.get('endpoint');
+      this.sendAction('setCurrentTime', endpoint);
+    }
   }
 });

@@ -9,5 +9,25 @@ export default Ember.Component.extend({
   muted: false,
   playbackRate: 1,
   volume: 0,
-  isPaused: true
+  isPaused: true,
+
+  startEndpoint: 0,
+  endEndpoint: 0,
+
+  actions: {
+    setEndpoint: function(affectedEndpoint, newEndpoint) {
+      var legalEndpoint = this.ensureEndpointIsLegal(newEndpoint);
+      this.set(affectedEndpoint, legalEndpoint);
+    }
+  },
+
+  ensureEndpointIsLegal: function(endpoint) {
+    if (endpoint < 0) {
+      return 0;
+    } else if (this.get('duration') < endpoint) {
+      return this.get('duration');
+    } else {
+      return endpoint;
+    }
+  }
 });

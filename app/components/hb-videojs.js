@@ -54,6 +54,23 @@ export default Ember.Component.extend({
     setCurrentTime: function(newCurrentTime) {
       var player = this.get('player');
       player.currentTime(newCurrentTime);
+    },
+
+    setEndpoint: function(affectedEndpoint, newEndpoint) {
+      this.sendAction('setEndpoint', affectedEndpoint, newEndpoint);
+      this.maintainPlayerEndpointLockstep(affectedEndpoint, newEndpoint);
+    }
+  },
+
+  // If the paused player is looking at the endpoint when it is changed, update
+  // the currentTime to keep it in lockstep. This is helpful when fine-tuning
+  // the start/end of a clip.
+  maintainPlayerEndpointLockstep: function(affectedEndpoint, newEndpoint) {
+    var player = this.get('player');
+    var previouslyInLockstep = player.currentTime() === 
+                                  this.get(affectedEndpoint);
+    if (player.paused() && (previouslyInLockstep || player.seeking())) {
+      this.send('setCurrentTime', newEndpoint);
     }
   },
 
