@@ -1,5 +1,9 @@
 <label>{{startOrEnd}}: </label>
-<button {{action "incrementEndpoint" -0.5}}>&lt;&lt;</button>
-{{input value=endpointTime}}
-<button {{action "incrementEndpoint" 0.5}}>&gt;&gt;</button>
-<button {{action "setEndpointToCurrentTime"}}>Now</button>
+<div>
+  <button {{action "incrementEndpoint" -0.5}}>&lt;&lt;</button>
+  {{input value=endpointTime}}
+  <button {{action "incrementEndpoint" 0.5}}>&gt;&gt;</button>
+  <button {{action "setEndpointToCurrentTime"}}>Now</button>
+  <button {{action "setEndpointToDefault"}}>Reset</button>
+  <button {{action "setCurrentTimeToEndpoint"}}>GOTO</button>
+</div>

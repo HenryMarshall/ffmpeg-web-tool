@@ -1,15 +1,4 @@
-<div>
-  <button {{action "debug"}}>Debug</button>
-  {{playback-rate playbackRate=playbackRate}}
-  {{range-endpoint 
-      startOrEnd="Start" 
-      currentTime=currentTime 
-      duration=duration
-  }}
-  <button {{action "playPause"}}>{{if isPaused "Play" "Pause"}}</button>
-</div>
-
-{{#ivy-videojs class="vjs-default-skin"
+{{#hb-videojs 
     isPaused=isPaused
     controls=controls
     currentTime=currentTime
@@ -20,8 +9,16 @@
     playbackRate=playbackRate
     width=width
     volume=volume
+
+    startEndpointTime=startEndpointTime
+    endEndpointTime=endEndpointTime
 }}
 
-  {{ivy-videojs-source src="/assets/test_video.webm"}}
-{{/ivy-videojs}}
+  {{hb-videojs-source src="/assets/test_video.webm"}}
 
+{{/hb-videojs}}
+
+<div>
+  <p>These start and end times are in the video-player component:</p>
+  <p>{{startEndpointTime}} | {{endEndpointTime}}</p>
+</div>

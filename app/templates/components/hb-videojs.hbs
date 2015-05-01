@@ -1,0 +1,27 @@
+<video class="video-js vjs-default-skin">
+ {{yield}}
+</video>
+
+{{#if isPaused}}
+  <button {{action "play"}}>Play</button>
+{{else}}
+  <button {{action "pause"}}>Pause</button>
+{{/if}}
+
+{{playback-rate playbackRate=playbackRate}}
+
+{{range-endpoint 
+    startOrEnd="Start" 
+    currentTime=currentTime 
+    action="setCurrentTime"
+    defaultEndpointTime=0
+    endpointTime=startEndpointTime
+}}
+
+{{range-endpoint
+    startOrEnd="End"
+    currentTime=currentTime
+    action="setCurrentTime"
+    defaultEndpointTime=duration
+    endpointTime=endEndpointTime
+}}
