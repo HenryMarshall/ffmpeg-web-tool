@@ -56,18 +56,16 @@ export default Ember.Component.extend({
       player.currentTime(newCurrentTime);
     },
 
-    // This just passed the `setEndpoint` action up to hb-videojs's parent
-    // FIXME: there *must* be a better way
     setEndpoint: function(affectedEndpoint, newEndpoint) {
       this.sendAction('setEndpoint', affectedEndpoint, newEndpoint);
-      this.maintainViewEndpointLockstep(affectedEndpoint, newEndpoint);
+      this.maintainPlayerEndpointLockstep(affectedEndpoint, newEndpoint);
     }
   },
 
   // If the paused player is looking at the endpoint when it is changed, update
   // the currentTime to keep it in lockstep. This is helpful when fine-tuning
   // the start/end of a clip.
-  maintainViewEndpointLockstep: function(affectedEndpoint, newEndpoint) {
+  maintainPlayerEndpointLockstep: function(affectedEndpoint, newEndpoint) {
     var player = this.get('player');
     var previouslyInLockstep = player.currentTime() === 
                                   this.get(affectedEndpoint);

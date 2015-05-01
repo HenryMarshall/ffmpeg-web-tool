@@ -12,7 +12,6 @@ export default Ember.Component.extend({
   actions: {
     incrementEndpoint: function(incrementBy) {
       var incrementedEndpoint = this.get('endpoint') + incrementBy;
-      // FIXME: This uses a hacky sendAction pass through in hb-videojs
       this.sendEndpoint(this.get('endpoint') + incrementBy);
     }, 
 
