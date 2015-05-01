@@ -85,7 +85,11 @@ export default Ember.Component.extend({
         this.stopSegment();
       } 
       else {
-        if (currentTime >= this.get('endEndpoint')) {
+        // If you don't check if player is seeking, this will redirect to
+        // `startEndpoint` before currentTimeDidChangeViaSeeked will trigger.
+        // This prevents it from calling stopSegment.
+        var isPlayerSeeking = this.get('player').seeking();
+        if (currentTime >= this.get('endEndpoint') && !isPlayerSeeking) {
           if (this.get('isSegmentLooping')) {
             this.send('setCurrentTime', this.get('startEndpoint'));
           }
@@ -110,11 +114,18 @@ export default Ember.Component.extend({
     }
   },
 
-  // vanilla ivy-videojs
+  currentTimeDidChangeViaSeeked: Ember.on('seeked', function(player) {
+    this.set('currentTime', player.currentTime());
+    if (this.get('currentTime') !== this.get('startEndpoint')) {
+      this.stopSegment();
+    }
+  }),
 
-  currentTimeDidChange: Ember.on('seeked', 'timeUpdate', function(player) {
+  currentTimeDidChangeViaTimeUpdate: Ember.on('timeUpdate', function(player) {
     this.set('currentTime', player.currentTime());
   }),
+
+  // vanilla ivy-videojs
 
   durationDidChange: Ember.on('durationChange', function(player) {
     this.set('duration', player.duration());
