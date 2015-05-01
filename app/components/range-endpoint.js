@@ -1,8 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  endpointTime: 0,
-
   actions: {
     incrementEndpoint: function(incrementBy) {
       var newEndpoint = this.get('endpointTime') + incrementBy;
@@ -23,6 +21,10 @@ export default Ember.Component.extend({
     setCurrentTimeToEndpoint: function() {
       var endpointTime = this.get('endpointTime');
       this.sendAction('action', endpointTime);
-    }
+    },
+
+    setEndpointToDefault: function() {
+      this.set('endpointTime', Ember.computed.oneWay('defaultEndpointTime'));
+    }.observes('defaultEndpointTime').on('init')
   }
 });

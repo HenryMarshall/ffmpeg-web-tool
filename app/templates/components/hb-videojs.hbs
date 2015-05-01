@@ -12,12 +12,14 @@
 {{range-endpoint 
     startOrEnd="Start" 
     currentTime=currentTime 
-    duration=duration
     action="setCurrentTime"
+    defaultEndpointTime=0
+    endpointTime=startEndpointTime
 }}
 {{range-endpoint
     startOrEnd="End"
     currentTime=currentTime
-    duration=duration
     action="setCurrentTime"
+    defaultEndpointTime=duration
+    endpointTime=endEndpointTime
 }}

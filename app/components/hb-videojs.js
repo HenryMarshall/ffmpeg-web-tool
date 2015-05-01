@@ -32,11 +32,6 @@ export default Ember.Component.extend({
   // added `pause` to the list of playerEvents
   // added `this.set('player', player);` to `_didInitPlayer()`
 
-  // playPauseTriggeredExternally: function() {
-  //   var player = this.get('player');
-  //   this.isPaused ? player.pause() : player.play();
-  // }.observes('isPaused'),
-
   playDidChange: Ember.on('play', function() {
     this.set('isPaused', false);
   }),
@@ -58,7 +53,6 @@ export default Ember.Component.extend({
 
     setCurrentTime: function(newCurrentTime) {
       var player = this.get('player');
-      console.log("newCurrentTime: ",newCurrentTime);
       player.currentTime(newCurrentTime);
     }
   },

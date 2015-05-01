@@ -9,9 +9,16 @@
     playbackRate=playbackRate
     width=width
     volume=volume
+
+    startEndpointTime=startEndpointTime
+    endEndpointTime=endEndpointTime
 }}
 
   {{hb-videojs-source src="/assets/test_video.webm"}}
 
 {{/hb-videojs}}
 
+<div>
+  <p>These start and end times are in the video-player component:</p>
+  <p>{{startEndpointTime}} | {{endEndpointTime}}</p>
+</div>
